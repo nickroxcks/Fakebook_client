@@ -10,7 +10,7 @@ const UserImage = ({ image, size = "60px" }) => {
         width={size}
         height={size}
         alt="user"
-        src={`https://master.dphvawctb996s.amplifyapp.com/assets/${image}`}
+        src={`http://localhost:3001/assets/${image}`}
       />
     </Box>
   );
