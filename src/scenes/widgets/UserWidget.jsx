@@ -23,7 +23,7 @@ import {
     
     //in middlewre, we look for the Bearer string and grab the token
     const getUser = async () => {
-      const response = await fetch(`http://localhost:3001/users/${userId}`, {
+      const response = await fetch(`https://master.dphvawctb996s.amplifyapp.com/users/${userId}`, {
         method: "GET",
         headers: { Authorization: `Bearer ${token}` },
       });
