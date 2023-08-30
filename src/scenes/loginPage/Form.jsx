@@ -80,7 +80,7 @@ const Form = () => {
   };
 
   const login = async (values, onSubmitProps) => {
-    const loggedInResponse = await fetch("http://34.228.207.227:3001/auth/login", {
+    const loggedInResponse = await fetch("https://34.228.207.227:3001/auth/login", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(values),
