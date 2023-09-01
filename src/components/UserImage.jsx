@@ -10,7 +10,7 @@ const UserImage = ({ image, size = "60px" }) => {
         width={size}
         height={size}
         alt="user"
-        src={`http://34.228.207.227:3001/assets/${image}`}
+        src={`https://fakebook-server-34b278b8e1dd.herokuapp.com/assets/${image}`}
       />
     </Box>
   );

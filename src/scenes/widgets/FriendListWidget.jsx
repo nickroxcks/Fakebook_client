@@ -13,7 +13,7 @@ const FriendListWidget = ({ userId }) => {
 
   const getFriends = async () => {
     const response = await fetch(
-      `http://34.228.207.227:3001/users/${userId}/friends`,
+      `https://fakebook-server-34b278b8e1dd.herokuapp.com/users/${userId}/friends`,
       {
         method: "GET",
         headers: { Authorization: `Bearer ${token}` },

@@ -23,7 +23,7 @@ import {
     
     //in middlewre, we look for the Bearer string and grab the token
     const getUser = async () => {
-      const response = await fetch(`http://34.228.207.227:3001/users/${userId}`, {
+      const response = await fetch(`https://fakebook-server-34b278b8e1dd.herokuapp.com/users/${userId}`, {
         method: "GET",
         headers: { Authorization: `Bearer ${token}` },
       });

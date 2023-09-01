@@ -23,7 +23,7 @@ const Friend = ({ friendId, name, subtitle, userPicturePath }) => {
 
   const patchFriend = async () => {
     const response = await fetch(
-      `http://34.228.207.227:3001/users/${_id}/${friendId}`,
+      `https://fakebook-server-34b278b8e1dd.herokuapp.com/users/${_id}/${friendId}`,
       {
         method: "PATCH",
         headers: {
