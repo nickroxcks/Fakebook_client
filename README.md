@@ -55,7 +55,7 @@ Friends can be added by clicking the add friend shown beside the username in eve
 ![FakebookHighLevel](https://github.com/nickroxcks/Fakebook_client/assets/34073804/46c8a494-2e4c-40be-898b-8be46a4b4d21)
 
 
-#### Front End Design
+## Front End Design
 
 The frontend is the side of an application for which the user interacts with. In the case of this web application, it is the web browser. There are many web technologies out there so when designing an application it's important to choose the technologies that best suit your application. Currently, the two most popular web stack technologies in 2023 are the MERN stack and the MEAN stack, with the primary difference between the two being the front end technologies used. In the case of this application, we are using MERN which uses the React library instead of the Angular framework. 
 
@@ -74,7 +74,7 @@ All of these frontend technolgies combined align exactly with Fakebook's desired
 ##### Front End Hosting Solution
 AWS Amplify was chosen as the hosting solution for this Front End. There is a lot to know about AWS technolgies and many tech companies consider knowledge of AWS technolgies a valuable skill. As such, in order to improve my skills and knowledge of AWS, this was the hosting solution I chose. Amplify itself makes it very easy to auto deploy code to a live site with a simple git commit. It's reliable, secure, and well supported.
 
-#### Back End API Design
+## Back End API Design
 
 This project requires the storing of dynamic user data (profile pictures, attachments. etc), as well as server side authorization to ensure only certain actions can be performed by certain users. As such, a backend is required. The combination of running NodeJS with the Express is an ideal solution for the backend of this project as the two make it very convenient for developers to handle incoming requests.
 
