@@ -46,7 +46,7 @@ Fakebook utilizes the MERN stack along side a number of libraries and technologi
 Navigate to the front end application at (https://master.d2v83wrsmysfjd.amplifyapp.com/) and create an account
 at the login page. Registration requires a first name, last name, email, password, occupation, location, and a profile picture.
 
-Upon logging in, all public posts visible to you will be shown. Try creating your own post using the "What's on your mind" toolbar. 
+Upon logging in, your home dashboard will be displayed with all public posts. Try creating your own post using the "What's on your mind" toolbar. 
 
 Friends can be added by clicking the add friend shown beside the username in every post. To view an individual users profile, click the username to be taken to their profile page.
 
