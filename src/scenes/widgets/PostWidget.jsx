@@ -35,7 +35,7 @@ import {
     const primary = palette.primary.main;
   
     const patchLike = async () => {
-      const response = await fetch(`https://fakebook-server-34b278b8e1dd.herokuapp.com/posts/${postId}/like`, {
+      const response = await fetch(`${process.env.REACT_APP_API_BASE_URL}/posts/${postId}/like`, {
         method: "PATCH",
         headers: {
           Authorization: `Bearer ${token}`,
@@ -64,7 +64,7 @@ import {
             height="auto"
             alt="post"
             style={{ borderRadius: "0.75rem", marginTop: "0.75rem" }}
-            src={`https://fakebook-server-34b278b8e1dd.herokuapp.com/assets/${picturePath}`}
+            src={`${process.env.REACT_APP_API_BASE_URL}/assets/${picturePath}`}
           />
         )}
         <FlexBetween mt="0.25rem">

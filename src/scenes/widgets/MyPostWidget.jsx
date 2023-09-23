@@ -46,7 +46,7 @@ import {
         formData.append("picturePath", image.name);
       }
   
-      const response = await fetch(`https://fakebook-server-34b278b8e1dd.herokuapp.com/posts`, {
+      const response = await fetch(`${process.env.REACT_APP_API_BASE_URL}/posts`, {
         method: "POST",
         headers: { Authorization: `Bearer ${token}` },
         body: formData,

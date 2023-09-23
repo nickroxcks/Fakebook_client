@@ -23,7 +23,7 @@ const Friend = ({ friendId, name, subtitle, userPicturePath }) => {
 
   const patchFriend = async () => {
     const response = await fetch(
-      `https://fakebook-server-34b278b8e1dd.herokuapp.com/users/${_id}/${friendId}`,
+      `${process.env.REACT_APP_API_BASE_URL}/users/${_id}/${friendId}`,
       {
         method: "PATCH",
         headers: {

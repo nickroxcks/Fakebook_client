@@ -1,4 +1,10 @@
-// color design tokens export
+/**
+ * This js file contains the common MUI theme/palette settings used in the app
+ * Author: Nicholas Serrano
+ * Created Date: 2023-09-01
+ */
+
+// color design tokens export copied from MUI Docs
 export const colorTokens = {
     grey: {
       0: "#FFFFFF",
@@ -29,8 +35,8 @@ export const colorTokens = {
     },
   };
   
-  // mui theme settings
-  //https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Spread_syntax
+  // MUI theme settings. Depending on the mode passed will determine the color palettes
+  // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Spread_syntax
   export const themeSettings = (mode) => {
     return {
       palette: {

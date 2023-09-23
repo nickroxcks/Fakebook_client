@@ -1,3 +1,8 @@
+/*
+Import custom made Rubik google font and set width and height to full screen for full application.
+https://fonts.google.com/ allows you to create a custom font with preset weight and size,
+and then import the font into your project via api.
+*/
 @import url("https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;700&display=swap");
 
 html,

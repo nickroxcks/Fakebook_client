@@ -9,7 +9,7 @@ const PostsWidget = ({ userId, isProfile = false }) => {
   const token = useSelector((state) => state.token);
 
   const getPosts = async () => {
-    const response = await fetch("https://fakebook-server-34b278b8e1dd.herokuapp.com/posts", {
+    const response = await fetch(`${process.env.REACT_APP_API_BASE_URL}/posts`, {
       method: "GET",
       headers: { Authorization: `Bearer ${token}` },
     });
@@ -19,7 +19,7 @@ const PostsWidget = ({ userId, isProfile = false }) => {
 
   const getUserPosts = async () => {
     const response = await fetch(
-      `https://fakebook-server-34b278b8e1dd.herokuapp.com/posts/${userId}/posts`,
+      `${process.env.REACT_APP_API_BASE_URL}/posts/${userId}/posts`,
       {
         method: "GET",
         headers: { Authorization: `Bearer ${token}` },

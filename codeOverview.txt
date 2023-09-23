@@ -1,0 +1,38 @@
+Client/                          -> Root folder for all client side code
+├─ node_modules/                 
+├─ public/                       ->
+│  ├─ favicon.ico                ->
+│  ├─ index.html                 -> React Single Page application html file. Contains react root wrapper div, and defines application title/icon
+│  ├─ robots.txt                 
+├─ src/                          
+│  ├─ index.js                   -> React Root component. Initializes redux store and browser storage for token. Renders the main App component
+│  ├─ index.css                  -> Styling used throughout entire application. Used to set max height/width and default fonts
+│  ├─ theme.js                   -> File that contains MUI themes used throughout entire application. Can be customized. Includes dark/light themes
+│  ├─ App.js                     -> App component called in root index component. Defines React Router routes, and passes a MUI theme down to entire applicaiton
+│  ├─ Components/                -> Folder with shared components throughout application
+│  │  ├─ FlexBetween.jsx         -> Styled MUI box component used to wrap components that require display flex properties and center allignment with space
+│  │  ├─ Friend.jsx              -> Components listing an individual friend with add friend button. Add/delete functionality included. Props: ({ friendId, name, subtitle, userPicturePath })
+│  │  ├─ UserImage.jsx           -> Image component which accepts an image path and displays a circular image of user. Props: ({ image, size = "60px" })
+│  │  ├─ WidgetWrapper.jsx       -> Mui style Box wrapper component used to give shared themes between application widgets. Gives widgets the "Box Look"
+│  ├─ scenes/                    -> Folder containing all scenes/pages of application
+│  │  ├─ homePage/                 
+│  │  │  ├─ index.jsx            -> Homepage of application. Requires authorization token
+│  │  ├─ loginPage/              
+│  │  │  ├─ index.jsx            -> Login and registration page for application. Default page when no user token for authorization is defined
+│  │  │  ├─ Form.jsx             -> Form labels/data to be used in login page. Used for both login and registration
+│  │  ├─ profilePage/            
+│  │  │  ├─ index.jsx            -> Page shown when a user profile is clicked. Shows the user profile and all their posts. (Uses React router for user id)
+│  │  ├─ navbar/                 
+│  │  │  ├─ index.jsx            -> Navbar component used on top of homepage. 
+│  │  ├─ widgets/                -> Folder with widget components used throughout application
+│  │  │  ├─ AdvertWidget.jsx     -> Box component to display an add (Hard coded content currently)
+│  │  │  ├─ FriendListWidget.jsx -> Box component on homepage showing current users list of friends. Maps a list of "Friend" components. Props: ({ userId })
+│  │  │  ├─ MyPostWidget.jsx     -> Box component on homePage user interacts with to create and submit a post. Props: ({ picturePath })
+│  │  │  ├─ PostsWidget.jsx      -> Entire posts section of homepage. Uses API to fetch post data from DB and list all posts. Props: ({ userId, isProfile = false })
+│  │  │  ├─ PostWidget.jsx       -> Box component displaying the individual post. Props: ({postId, postUserId, name, description, location, picturePath, userPicturePath, likes, comments,})
+│  │  │  ├─ UserWidget.jsx       -> Box component listing all user info. Props: ({ userId, picturePath })
+│  ├─ state/                     -> Contains all redux state related files
+│  │  ├─ index.jsx               -> Contains all redux state related files
+├─ .gitignore                    -> git ignore for env and node files
+├─ package.json                  -> package list and dependencies installed
+├─ README.md                     

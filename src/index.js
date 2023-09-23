@@ -1,7 +1,17 @@
+/**
+ * index.js
+ * Author: Nicholas Serrano
+ * Summary:
+ * This file is where the applications starts. In this file, we:
+ * - Define initialize the redux store,
+ * - Apply application wide css, 
+ * - Initialize the redux store to allow application wide storage
+ * - Render the App component
+ */
 import React from "react";
 import ReactDOM from "react-dom/client";
-import "./index.css";
 import App from "./App";
+import "./index.css";
 import authReducer from "./state";
 import { configureStore } from "@reduxjs/toolkit";
 import { Provider } from "react-redux";

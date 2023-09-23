@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useRef } from "react";
 import {
   Box,
   Button,
@@ -6,6 +6,8 @@ import {
   useMediaQuery,
   Typography,
   useTheme,
+  Snackbar,
+  Alert,
 } from "@mui/material";
 import EditOutlinedIcon from "@mui/icons-material/EditOutlined";
 import { Formik } from "formik";
@@ -16,7 +18,7 @@ import { setLogin } from "state";
 import Dropzone from "react-dropzone";
 import FlexBetween from "components/FlexBetween";
 
-//form validation
+//form validation via yup
 const registerSchema = yup.object().shape({
   firstName: yup.string().required("required"),
   lastName: yup.string().required("required"),
@@ -48,14 +50,36 @@ const initialValuesLogin = {
 
 //Form component
 const Form = () => {
-  const [pageType, setPageType] = useState("login");
-  const { palette } = useTheme();
+  const [pageType, setPageType] = useState("login"); //default state is login
+  //set toast message states and
+  const [toastState, setToastState] = useState({
+    openFailedRegister: false,
+    openSuccessRegister: false,
+    openFailedLogin: false,
+    toastMessage: ''
+  });
+  const { openFailedRegister, openSuccessRegister, openFailedLogin, toastMessage } =
+    toastState;
+  const form = useRef();
+  const { palette } = useTheme(); //grab the palette from the theme used
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const isNonMobile = useMediaQuery("(min-width:600px)");
   const isLogin = pageType === "login";
   const isRegister = pageType === "register";
 
+  //For Snackbar component. Close toast message when click away
+  const handleClose = (event, reason) => {
+    if (reason === "clickaway") {
+      return;
+    }
+    setToastState({
+      openFailedRegister: false,
+      openSuccessRegister: false,
+      openFailedLogin: false,
+      toastMessage: ''
+    });
+  };
   const register = async (values, onSubmitProps) => {
     // this allows us to send form info with image
     const formData = new FormData();
@@ -65,7 +89,7 @@ const Form = () => {
     formData.append("picturePath", values.picture.name);
 
     const savedUserResponse = await fetch(
-      "https://fakebook-server-34b278b8e1dd.herokuapp.com/auth/register",
+      `${process.env.REACT_APP_API_BASE_URL}/auth/register`,
       {
         method: "POST",
         body: formData,
@@ -76,18 +100,38 @@ const Form = () => {
 
     if (savedUser) {
       setPageType("login");
+      setToastState({
+        open: true,
+        openFailedRegister: false,
+        openSuccessRegister: true,
+        openFailedLogin: false,
+        toastMessage: 'Registration was successful'
+      });
+    } else {
+      setToastState({
+        open: true,
+        openFailedRegister: true,
+        openSuccessRegister: false,
+        openFailedLogin: false,
+        toastMessage: 'Registration failed. Could not connect to API'
+      });
     }
   };
-
+  //login submit
   const login = async (values, onSubmitProps) => {
-    const loggedInResponse = await fetch("https://fakebook-server-34b278b8e1dd.herokuapp.com/auth/login", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(values),
-    });
+    const loggedInResponse = await fetch(
+      `${process.env.REACT_APP_API_BASE_URL}/auth/login`,
+      {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(values),
+      }
+    );
     const loggedIn = await loggedInResponse.json();
     onSubmitProps.resetForm();
-    if (loggedIn) {
+
+    //if no error message is returned, log in. Else display error toast
+    if (!loggedIn.msg) {
       dispatch(
         setLogin({
           user: loggedIn.user,
@@ -95,6 +139,14 @@ const Form = () => {
         })
       );
       navigate("/home");
+    } else {
+      setToastState({
+        open: true,
+        openFailedRegister: false,
+        openSuccessRegister: false,
+        openFailedLogin: true,
+        toastMessage: loggedIn.msg
+      });
     }
   };
 
@@ -108,6 +160,7 @@ const Form = () => {
       onSubmit={handleFormSubmit}
       initialValues={isLogin ? initialValuesLogin : initialValuesRegister}
       validationSchema={isLogin ? loginSchema : registerSchema}
+      isInitialValid={false}
     >
       {({
         values,
@@ -118,9 +171,10 @@ const Form = () => {
         handleSubmit,
         setFieldValue,
         resetForm,
+        isValid,
       }) => (
-        <form onSubmit={handleSubmit}>
-            {/*For the sx, anything below a div,  */}
+        <form onSubmit={handleSubmit} ref={form}>
+          {/*For the sx, anything below a div,  */}
           <Box
             display="grid"
             gap="30px"
@@ -131,7 +185,7 @@ const Form = () => {
           >
             {isRegister && (
               <>
-              {/*larger screens, have a span of 2 */}
+                {/*larger screens, have a span of 2 */}
                 <TextField
                   label="First Name"
                   onBlur={handleBlur}
@@ -238,6 +292,7 @@ const Form = () => {
           {/* BUTTONS */}
           <Box>
             <Button
+              disabled={!isValid & !isLogin}
               fullWidth
               type="submit"
               sx={{
@@ -268,6 +323,51 @@ const Form = () => {
                 ? "Don't have an account? Sign Up here."
                 : "Already have an account? Login here."}
             </Typography>
+
+            {/*Snackbar component only allows 1 alert component. Need 2 of them */}
+            <Snackbar
+              open={openSuccessRegister}
+              autoHideDuration={6000}
+              onClose={handleClose}
+              anchorOrigin={{ vertical: "top", horizontal: "center" }}
+            >
+              <Alert
+                onClose={handleClose}
+                severity="success"
+                sx={{ width: "100%" }}
+              >
+                {toastMessage}
+              </Alert>
+            </Snackbar>
+
+            <Snackbar
+              open={openFailedRegister}
+              autoHideDuration={6000}
+              onClose={handleClose}
+              anchorOrigin={{ vertical: "top", horizontal: "center" }}
+            >
+              <Alert
+                onClose={handleClose}
+                severity="error"
+                sx={{ width: "100%" }}
+              >
+                {toastMessage}
+              </Alert>
+            </Snackbar>
+            <Snackbar
+              open={openFailedLogin}
+              autoHideDuration={6000}
+              onClose={handleClose}
+              anchorOrigin={{ vertical: "top", horizontal: "center" }}
+            >
+              <Alert
+                onClose={handleClose}
+                severity="error"
+                sx={{ width: "100%" }}
+              >
+                {toastMessage}
+              </Alert>
+            </Snackbar>
           </Box>
         </form>
       )}
