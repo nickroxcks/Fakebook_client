@@ -67,11 +67,11 @@ Material UI is a component library which delivers ready to use components which 
 
 All of these frontend technolgies combined align exactly with Fakebook's desired core features. Mobile responsiveness, dark/light mode, intuitive UI, etc. As such, MERN is an optimal stack for this project, and a stack well supported in 2023 that will only continue to evolve.
 
-##### Front End Code Overview
+### Front End Code Overview
 ![image](https://github.com/nickroxcks/Fakebook_client/assets/34073804/83ccb791-a1ba-44d7-9e26-4bcaff7f283c)
 
 
-##### Front End Hosting Solution
+### Front End Hosting Solution
 AWS Amplify was chosen as the hosting solution for this Front End. There is a lot to know about AWS technolgies and many tech companies consider knowledge of AWS technolgies a valuable skill. As such, in order to improve my skills and knowledge of AWS, this was the hosting solution I chose. Amplify itself makes it very easy to auto deploy code to a live site with a simple git commit. It's reliable, secure, and well supported.
 
 ## Back End API Design
@@ -84,7 +84,7 @@ The backend for this project runs on a linux container in the cloud, using Nodej
 
 For where to put the database, there was the option to either store it on the same backend server where the API is stored, or place the db on a different server. The optimal choice can very project to project depending on resources and costs, but in the case of Fakebook a seperate db server is the optimal choice. This is because having an API and a DB run on the same server can impact server performance, as without proper infrastructure on the server resources will be shared and tied up. MongoDB offers a scalable cloud solution for databases called MongoDB Atlas. It's very easy to create a database on Atlas and have it quickly ready to go to interact with the backend, and as such Atlas was the chosen solution for this projects database. 
 
-##### Back End Code Overview
+#### Back End Code Overview
 ![image](https://github.com/nickroxcks/Fakebook_client/assets/34073804/e3573fba-adac-4b56-b4a7-7745aedca3a8)
 
 
