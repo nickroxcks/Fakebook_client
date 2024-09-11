@@ -7,6 +7,8 @@
 Fakebook is a Full Stack, mobile friendly, social media application utilizing the MERN stack and popular web 
 technologies to create a replica of the popular social media application "Facebook".
 
+![fakebook](https://github.com/nickroxcks/Fakebook_client/assets/34073804/bdd563db-a98a-485b-a722-e44702a3021e)
+
 ## Features
 
 - User Login/Registration
@@ -44,15 +46,16 @@ Fakebook utilizes the MERN stack along side a number of libraries and technologi
 Navigate to the front end application at (https://master.d2v83wrsmysfjd.amplifyapp.com/) and create an account
 at the login page. Registration requires a first name, last name, email, password, occupation, location, and a profile picture.
 
-Upon logging in, all public posts visible to you will be shown. Try creating your own post using the "What's on your mind" toolbar. 
+Upon logging in, your home dashboard will be displayed with all public posts. Try creating your own post using the "What's on your mind" toolbar. 
 
 Friends can be added by clicking the add friend shown beside the username in every post. To view an individual users profile, click the username to be taken to their profile page.
 
 # Design Documentation
 
-*insert architecure image here
+![FakebookHighLevel](https://github.com/nickroxcks/Fakebook_client/assets/34073804/46c8a494-2e4c-40be-898b-8be46a4b4d21)
 
-#### Front End Design
+
+## Front End Design
 
 The frontend is the side of an application for which the user interacts with. In the case of this web application, it is the web browser. There are many web technologies out there so when designing an application it's important to choose the technologies that best suit your application. Currently, the two most popular web stack technologies in 2023 are the MERN stack and the MEAN stack, with the primary difference between the two being the front end technologies used. In the case of this application, we are using MERN which uses the React library instead of the Angular framework. 
 
@@ -64,13 +67,14 @@ Material UI is a component library which delivers ready to use components which 
 
 All of these frontend technolgies combined align exactly with Fakebook's desired core features. Mobile responsiveness, dark/light mode, intuitive UI, etc. As such, MERN is an optimal stack for this project, and a stack well supported in 2023 that will only continue to evolve.
 
-##### Front End Code Overview
-*insert code overview image here*
+### Front End Code Overview
+![image](https://github.com/nickroxcks/Fakebook_client/assets/34073804/83ccb791-a1ba-44d7-9e26-4bcaff7f283c)
 
-##### Front End Hosting Solution
+
+### Front End Hosting Solution
 AWS Amplify was chosen as the hosting solution for this Front End. There is a lot to know about AWS technolgies and many tech companies consider knowledge of AWS technolgies a valuable skill. As such, in order to improve my skills and knowledge of AWS, this was the hosting solution I chose. Amplify itself makes it very easy to auto deploy code to a live site with a simple git commit. It's reliable, secure, and well supported.
 
-#### Back End API Design
+## Back End API Design
 
 This project requires the storing of dynamic user data (profile pictures, attachments. etc), as well as server side authorization to ensure only certain actions can be performed by certain users. As such, a backend is required. The combination of running NodeJS with the Express is an ideal solution for the backend of this project as the two make it very convenient for developers to handle incoming requests.
 
@@ -80,8 +84,9 @@ The backend for this project runs on a linux container in the cloud, using Nodej
 
 For where to put the database, there was the option to either store it on the same backend server where the API is stored, or place the db on a different server. The optimal choice can very project to project depending on resources and costs, but in the case of Fakebook a seperate db server is the optimal choice. This is because having an API and a DB run on the same server can impact server performance, as without proper infrastructure on the server resources will be shared and tied up. MongoDB offers a scalable cloud solution for databases called MongoDB Atlas. It's very easy to create a database on Atlas and have it quickly ready to go to interact with the backend, and as such Atlas was the chosen solution for this projects database. 
 
-##### Back End Code Overview
-*insert code overview image here*
+#### Back End Code Overview
+![image](https://github.com/nickroxcks/Fakebook_client/assets/34073804/e3573fba-adac-4b56-b4a7-7745aedca3a8)
+
 
 The code for the API is structured such that the API routes are seperated from the controller logic and actions which take place with each route. The seperation provides better readability, maintainability, and extensibility. With the use of Mongoose, models can also be defined for database documents. While MongoDB is a NoSQL database and doesn't require any relational logic to run optimally, it's good to have models in place for all documents to ensure all data submitted is consistent. 
 
