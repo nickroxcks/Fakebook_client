@@ -22,12 +22,15 @@ export const authSlice = createSlice({
       state.mode = state.mode === "light" ? "dark" : "light";
     },
     setLogin: (state, action) => {
+      //console.log("setLogin state: " , state)
+      //console.log("setLogin action: " , action)
       state.user = action.payload.user;
       state.token = action.payload.token;
     },
     setLogout: (state) => {
       state.user = null;
       state.token = null;
+      state.posts = [];
     },
     setFriends: (state, action) => {
         //if user exists, set the friends list inside state
@@ -38,7 +41,11 @@ export const authSlice = createSlice({
       }
     },
     setPosts: (state, action) => {
-      state.posts = action.payload.posts;
+      //console.log("state is being manipulated setPosts(). state: ", state, " action: ", action );
+      //response.sort((a, b) => b.age - a.age)
+      let unsortedPosts = action.payload.posts; // array of objects:  [{}, {}]
+      state.posts = unsortedPosts.reverse()
+      //state.posts = action.payload.posts;
     },
     setPost: (state, action) => {
       const updatedPosts = state.posts.map((post) => {

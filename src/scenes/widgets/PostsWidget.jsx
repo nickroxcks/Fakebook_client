@@ -14,6 +14,8 @@ const PostsWidget = ({ userId, isProfile = false }) => {
       headers: { Authorization: `Bearer ${token}` },
     });
     const data = await response.json();
+    //data.reverse()
+    //console.log(data)
     dispatch(setPosts({ posts: data }));
   };
 
@@ -51,6 +53,8 @@ const PostsWidget = ({ userId, isProfile = false }) => {
           userPicturePath,
           likes,
           comments,
+          imageUrlPost,
+          imageUrlUser
         }) => (
           <PostWidget
             key={_id}
@@ -63,6 +67,8 @@ const PostsWidget = ({ userId, isProfile = false }) => {
             userPicturePath={userPicturePath}
             likes={likes}
             comments={comments}
+            imageUrlPost = {imageUrlPost}
+            imageUrlUser = {imageUrlUser}
           />
         )
       )}

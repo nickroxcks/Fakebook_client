@@ -22,6 +22,8 @@ import {
     userPicturePath,
     likes,
     comments,
+    imageUrlPost,
+    imageUrlUser
   }) => {
     const [isComments, setIsComments] = useState(false);
     const dispatch = useDispatch();
@@ -53,18 +55,19 @@ import {
           friendId={postUserId}
           name={name}
           subtitle={location}
-          userPicturePath={userPicturePath}
+          userPicturePath={imageUrlUser}
         />
         <Typography color={main} sx={{ mt: "1rem" }}>
           {description}
         </Typography>
-        {picturePath && (
+        {imageUrlPost && (
           <img
             width="100%"
             height="auto"
             alt="post"
             style={{ borderRadius: "0.75rem", marginTop: "0.75rem" }}
-            src={`${process.env.REACT_APP_API_BASE_URL}/assets/${picturePath}`}
+            //src={`${process.env.REACT_APP_API_BASE_URL}/assets/${picturePath}`}
+            src={imageUrlPost}
           />
         )}
         <FlexBetween mt="0.25rem">
