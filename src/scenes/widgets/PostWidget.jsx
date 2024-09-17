@@ -43,7 +43,7 @@ import {
           Authorization: `Bearer ${token}`,
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({ userId: loggedInUserId }),
+        body: JSON.stringify({ userId: loggedInUserId, imageUrlPost: imageUrlPost, imageUrlUser: imageUrlUser }),
       });
       const updatedPost = await response.json();
       dispatch(setPost({ post: updatedPost }));

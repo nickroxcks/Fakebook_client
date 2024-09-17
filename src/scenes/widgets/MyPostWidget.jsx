@@ -30,6 +30,7 @@ import {
     const [isImage, setIsImage] = useState(false);
     const [image, setImage] = useState(null);
     const [post, setPost] = useState("");
+    const [isSending, setIsSending] = useState(false);
     const { palette } = useTheme();
     const { _id } = useSelector((state) => state.user);
     const token = useSelector((state) => state.token);
@@ -37,7 +38,10 @@ import {
     const mediumMain = palette.neutral.mediumMain;
     const medium = palette.neutral.medium;
   
-    const handlePost = async () => {
+    const handlePost = async (args) => {
+      //console.log(args)
+      setIsSending(true);
+      console.log(isSending, post, isSending&&post);
       const formData = new FormData();
       formData.append("userId", _id);
       formData.append("description", post);
@@ -55,6 +59,7 @@ import {
       dispatch(setPosts({ posts }));
       setImage(null);
       setPost("");
+      setIsSending(false);
     };
   
     return (
@@ -155,7 +160,7 @@ import {
           )}
   
           <Button
-            disabled={!post}
+            disabled={!post && !isSending}
             onClick={handlePost}
             sx={{
               color: palette.background.alt,
